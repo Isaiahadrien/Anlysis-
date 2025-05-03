@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>script</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="script_files/libs/clipboard/clipboard.min.js"></script>
+<script src="script_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="script_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="script_files/libs/quarto-html/popper.min.js"></script>
+<script src="script_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="script_files/libs/quarto-html/anchor.min.js"></script>
+<link href="script_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="script_files/libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="script_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="script_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="script_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#questions" id="toc-questions" class="nav-link active" data-scroll-target="#questions"><strong>Questions</strong></a></li>
+  <li><a href="#data-preprocessing" id="toc-data-preprocessing" class="nav-link" data-scroll-target="#data-preprocessing"><strong>Data Preprocessing</strong></a></li>
+  <li><a href="#descriptive-analysis" id="toc-descriptive-analysis" class="nav-link" data-scroll-target="#descriptive-analysis"><strong>Descriptive Analysis</strong></a>
+  <ul class="collapse">
+  <li><a href="#global-co₂-emissions-distribution-2022" id="toc-global-co₂-emissions-distribution-2022" class="nav-link" data-scroll-target="#global-co₂-emissions-distribution-2022">Global CO₂ Emissions Distribution (2022)</a></li>
+  <li><a href="#global-co₂-emissions-distribution-2022-log-scale" id="toc-global-co₂-emissions-distribution-2022-log-scale" class="nav-link" data-scroll-target="#global-co₂-emissions-distribution-2022-log-scale">Global CO₂ Emissions Distribution (2022, Log Scale)</a></li>
+  <li><a href="#co₂-emissions-by-sector-2022---log-scale" id="toc-co₂-emissions-by-sector-2022---log-scale" class="nav-link" data-scroll-target="#co₂-emissions-by-sector-2022---log-scale">CO₂ Emissions by Sector (2022 - Log Scale)</a></li>
+  </ul></li>
+  <li><a href="#inferential-analysis" id="toc-inferential-analysis" class="nav-link" data-scroll-target="#inferential-analysis"><strong>Inferential Analysis</strong></a>
+  <ul class="collapse">
+  <li><a href="#anova-results-sectoral-comparison" id="toc-anova-results-sectoral-comparison" class="nav-link" data-scroll-target="#anova-results-sectoral-comparison">ANOVA Results (Sectoral Comparison)</a></li>
+  <li><a href="#linear-regression-results-energy-sector-trend" id="toc-linear-regression-results-energy-sector-trend" class="nav-link" data-scroll-target="#linear-regression-results-energy-sector-trend">Linear Regression Results (Energy Sector Trend)</a></li>
+  <li><a href="#global-co₂-emissions-trend-energy-sector-19902020" id="toc-global-co₂-emissions-trend-energy-sector-19902020" class="nav-link" data-scroll-target="#global-co₂-emissions-trend-energy-sector-19902020">Global CO₂ Emissions Trend (Energy Sector, 1990–2020)</a></li>
+  </ul></li>
+  <li><a href="#answers-to-questions" id="toc-answers-to-questions" class="nav-link" data-scroll-target="#answers-to-questions"><strong>Answers to Questions</strong></a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="questions" class="level1">
+<h1><strong>Questions</strong></h1>
+<p><strong>Question 1</strong>: Do CO₂ emissions differ significantly across the Energy, Transportation, and Manufacturing/Construction sectors globally in 2022?</p>
+<p><strong>Question 2</strong>: How have global CO₂ emissions in the Energy sector changed over time (1990–2022)?</p>
+</section>
+<section id="data-preprocessing" class="level1">
+<h1><strong>Data Preprocessing</strong></h1>
+<p>Install &amp; Import</p>
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="86b6f25c-c90b-4ce1-c5a4-3a513532fac0">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install pandas if needed</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Requirement already satisfied: pandas in /usr/local/lib/python3.11/dist-packages (2.2.2)
+Requirement already satisfied: numpy&gt;=1.23.2 in /usr/local/lib/python3.11/dist-packages (from pandas) (2.0.2)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/python3.11/dist-packages (from pandas) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.11/dist-packages (from pandas) (2025.2)
+Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.11/dist-packages (from pandas) (2025.2)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.17.0)</code></pre>
+</div>
+</div>
+<p>Load Data</p>
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:73}}" data-outputid="98cb14e4-0972-428d-e4a8-42aeca0e76c6">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset (replace "your_file.csv" with your actual filename)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> files</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>uploaded <span class="op">=</span> files.upload()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the CSV file</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'/content/historical_emissions.csv'</span>)  <span class="co"># Update filename</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+     <input type="file" id="files-df9f70c2-e5e4-49c0-9c21-18a4f2cd79b2" name="files[]" multiple="" disabled="" style="border:none">
+     <output id="result-df9f70c2-e5e4-49c0-9c21-18a4f2cd79b2">
+      Upload widget is only available when the cell has been executed in the
+      current browser session. Please rerun this cell to enable.
+      </output>
+      <script>// Copyright 2017 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+ * @fileoverview Helpers for google.colab Python module.
+ */
+(function(scope) {
+function span(text, styleAttributes = {}) {
+  const element = document.createElement('span');
+  element.textContent = text;
+  for (const key of Object.keys(styleAttributes)) {
+    element.style[key] = styleAttributes[key];
+  }
+  return element;
+}
+
+// Max number of bytes which will be uploaded at a time.
+const MAX_PAYLOAD_SIZE = 100 * 1024;
+
+function _uploadFiles(inputId, outputId) {
+  const steps = uploadFilesStep(inputId, outputId);
+  const outputElement = document.getElementById(outputId);
+  // Cache steps on the outputElement to make it available for the next call
+  // to uploadFilesContinue from Python.
+  outputElement.steps = steps;
+
+  return _uploadFilesContinue(outputId);
+}
+
+// This is roughly an async generator (not supported in the browser yet),
+// where there are multiple asynchronous steps and the Python side is going
+// to poll for completion of each step.
+// This uses a Promise to block the python side on completion of each step,
+// then passes the result of the previous step as the input to the next step.
+function _uploadFilesContinue(outputId) {
+  const outputElement = document.getElementById(outputId);
+  const steps = outputElement.steps;
+
+  const next = steps.next(outputElement.lastPromiseValue);
+  return Promise.resolve(next.value.promise).then((value) => {
+    // Cache the last promise value to make it available to the next
+    // step of the generator.
+    outputElement.lastPromiseValue = value;
+    return next.value.response;
+  });
+}
+
+/**
+ * Generator function which is called between each async step of the upload
+ * process.
+ * @param {string} inputId Element ID of the input file picker element.
+ * @param {string} outputId Element ID of the output display.
+ * @return {!Iterable<!Object>} Iterable of next steps.
+ */
+function* uploadFilesStep(inputId, outputId) {
+  const inputElement = document.getElementById(inputId);
+  inputElement.disabled = false;
+
+  const outputElement = document.getElementById(outputId);
+  outputElement.innerHTML = '';
+
+  const pickedPromise = new Promise((resolve) => {
+    inputElement.addEventListener('change', (e) => {
+      resolve(e.target.files);
+    });
+  });
+
+  const cancel = document.createElement('button');
+  inputElement.parentElement.appendChild(cancel);
+  cancel.textContent = 'Cancel upload';
+  const cancelPromise = new Promise((resolve) => {
+    cancel.onclick = () => {
+      resolve(null);
+    };
+  });
+
+  // Wait for the user to pick the files.
+  const files = yield {
+    promise: Promise.race([pickedPromise, cancelPromise]),
+    response: {
+      action: 'starting',
+    }
+  };
+
+  cancel.remove();
+
+  // Disable the input element since further picks are not allowed.
+  inputElement.disabled = true;
+
+  if (!files) {
+    return {
+      response: {
+        action: 'complete',
+      }
+    };
+  }
+
+  for (const file of files) {
+    const li = document.createElement('li');
+    li.append(span(file.name, {fontWeight: 'bold'}));
+    li.append(span(
+        `(${file.type || 'n/a'}) - ${file.size} bytes, ` +
+        `last modified: ${
+            file.lastModifiedDate ? file.lastModifiedDate.toLocaleDateString() :
+                                    'n/a'} - `));
+    const percent = span('0% done');
+    li.appendChild(percent);
+
+    outputElement.appendChild(li);
+
+    const fileDataPromise = new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        resolve(e.target.result);
+      };
+      reader.readAsArrayBuffer(file);
+    });
+    // Wait for the data to be ready.
+    let fileData = yield {
+      promise: fileDataPromise,
+      response: {
+        action: 'continue',
+      }
+    };
+
+    // Use a chunked sending to avoid message size limits. See b/62115660.
+    let position = 0;
+    do {
+      const length = Math.min(fileData.byteLength - position, MAX_PAYLOAD_SIZE);
+      const chunk = new Uint8Array(fileData, position, length);
+      position += length;
+
+      const base64 = btoa(String.fromCharCode.apply(null, chunk));
+      yield {
+        response: {
+          action: 'append',
+          file: file.name,
+          data: base64,
+        },
+      };
+
+      let percentDone = fileData.byteLength === 0 ?
+          100 :
+          Math.round((position / fileData.byteLength) * 100);
+      percent.textContent = `${percentDone}% done`;
+
+    } while (position < fileData.byteLength);
+  }
+
+  // All done.
+  yield {
+    response: {
+      action: 'complete',
+    }
+  };
+}
+
+scope.google = scope.google || {};
+scope.google.colab = scope.google.colab || {};
+scope.google.colab._files = {
+  _uploadFiles,
+  _uploadFilesContinue,
+};
+})(self);
+</script> 
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Saving historical_emissions.csv to historical_emissions (3).csv</code></pre>
+</div>
+</div>
+<p>Initial Exploration</p>
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="b4c96093-0e4c-4105-db1e-d65edef77834">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check missing values per column</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.isnull().<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ISO              0
+Country          0
+Data source      0
+Sector           0
+Gas              0
+Unit             0
+2022           100
+2021            91
+2020            97
+2019            81
+2018            86
+2017            85
+2016            94
+2015           112
+2014           118
+2013           125
+2012           157
+2011           188
+2010           185
+2009           195
+2008           211
+2007           213
+2006           219
+2005           224
+2004           248
+2003           251
+2002           261
+2001           268
+2000           279
+1999           323
+1998           331
+1997           339
+1996           345
+1995           354
+1994           386
+1993           388
+1992           404
+1991           475
+1990           507
+dtype: int64</code></pre>
+</div>
+</div>
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="0da03838-4a9c-41ff-c56f-780ddb9bf1f5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check first 5 rows</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check columns and data types</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.info())</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check unique values for key columns</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Countries:"</span>, df[<span class="st">'Country'</span>].unique())</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sectors:"</span>, df[<span class="st">'Sector'</span>].unique())</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Gases:"</span>, df[<span class="st">'Gas'</span>].unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     ISO Country    Data source            Sector      Gas    Unit      2022  \
+0  WORLD   World  Climate Watch            Energy  All GHG  MtCO₂e  38008.54   
+1  WORLD   World  Climate Watch            Energy      CO2  MtCO₂e  34378.15   
+2  WORLD   World  Climate Watch  Electricity/Heat  All GHG  MtCO₂e  16688.42   
+3  WORLD   World  Climate Watch  Electricity/Heat      CO2  MtCO₂e  16609.05   
+4    CHN   China  Climate Watch            Energy  All GHG  MtCO₂e  11308.84   
+
+       2021      2020      2019  ...      1999      1998      1997      1996  \
+0  37497.65  35532.26  37623.18  ...  25826.94  25701.94  25543.82  25119.71   
+1  33944.44  32079.31  33905.55  ...  22857.52  22719.06  22552.84  22158.58   
+2  16447.75  15323.08  15843.06  ...  10226.32  10163.84   9937.03   9662.55   
+3  16370.25  15251.99  15770.36  ...  10185.29  10121.23   9895.04   9621.46   
+4  11245.66  10657.18  10566.75  ...   3343.80   3447.66   3361.39   3306.30   
+
+       1995      1994      1993      1992      1991      1990  
+0  24605.32  23943.99  23845.95  23707.42  23818.01  23660.14  
+1  21689.61  21102.75  20994.79  20873.09  20941.20  20796.98  
+2   9296.41   9105.35   9003.81   8953.47   8796.23   8653.37  
+3   9257.03   9066.80   8966.02   8915.82   8759.57   8617.24  
+4   3335.37   3011.47   2901.54   2685.77   2588.40   2473.07  
+
+[5 rows x 39 columns]
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 7571 entries, 0 to 7570
+Data columns (total 39 columns):
+ #   Column       Non-Null Count  Dtype  
+---  ------       --------------  -----  
+ 0   ISO          7571 non-null   object 
+ 1   Country      7571 non-null   object 
+ 2   Data source  7571 non-null   object 
+ 3   Sector       7571 non-null   object 
+ 4   Gas          7571 non-null   object 
+ 5   Unit         7571 non-null   object 
+ 6   2022         7471 non-null   float64
+ 7   2021         7480 non-null   float64
+ 8   2020         7474 non-null   float64
+ 9   2019         7490 non-null   float64
+ 10  2018         7485 non-null   float64
+ 11  2017         7486 non-null   float64
+ 12  2016         7477 non-null   float64
+ 13  2015         7459 non-null   float64
+ 14  2014         7453 non-null   float64
+ 15  2013         7446 non-null   float64
+ 16  2012         7414 non-null   float64
+ 17  2011         7383 non-null   float64
+ 18  2010         7386 non-null   float64
+ 19  2009         7376 non-null   float64
+ 20  2008         7360 non-null   float64
+ 21  2007         7358 non-null   float64
+ 22  2006         7352 non-null   float64
+ 23  2005         7347 non-null   float64
+ 24  2004         7323 non-null   float64
+ 25  2003         7320 non-null   float64
+ 26  2002         7310 non-null   float64
+ 27  2001         7303 non-null   float64
+ 28  2000         7292 non-null   float64
+ 29  1999         7248 non-null   float64
+ 30  1998         7240 non-null   float64
+ 31  1997         7232 non-null   float64
+ 32  1996         7226 non-null   float64
+ 33  1995         7217 non-null   float64
+ 34  1994         7185 non-null   float64
+ 35  1993         7183 non-null   float64
+ 36  1992         7167 non-null   float64
+ 37  1991         7096 non-null   float64
+ 38  1990         7064 non-null   float64
+dtypes: float64(33), object(6)
+memory usage: 2.3+ MB
+None
+Countries: ['World' 'China' 'United States' 'India' 'European Union (27)' 'Russia'
+ 'Japan' 'Iran' 'Indonesia' 'Germany' 'Saudi Arabia' 'Canada'
+ 'South Korea' 'Brazil' 'South Africa' 'Mexico' 'Australia' 'Turkey'
+ 'United Kingdom' 'Italy' 'Vietnam' 'Poland' 'France' 'Kazakhstan'
+ 'Thailand' 'Malaysia' 'Iraq' 'Egypt' 'Pakistan' 'Algeria' 'Spain'
+ 'United Arab Emirates' 'Argentina' 'Turkmenistan' 'Nigeria' 'Singapore'
+ 'Venezuela' 'Philippines' 'Uzbekistan' 'Ethiopia' 'Netherlands' 'Kuwait'
+ 'Ukraine' 'Qatar' 'Bangladesh' 'Czech Republic' 'Oman' 'Colombia' 'Libya'
+ 'Chile' 'Chad' 'Belgium' 'Sudan' 'Romania' 'North Korea' 'Morocco'
+ 'Tanzania' 'Peru' 'Cameroon' 'Israel' 'Austria' 'Myanmar' 'Kenya'
+ 'Greece' 'Belarus' 'Angola' 'Ecuador' 'Serbia' 'Azerbaijan' 'Bulgaria'
+ 'Hungary' 'South Sudan' 'New Zealand' 'Syria' 'Bahrain' 'Norway'
+ 'Portugal' 'Niger' 'Mali' 'Finland' 'Sweden' 'Ireland' 'Switzerland'
+ 'Mongolia' 'Bolivia' 'Slovakia' 'Dominican Republic' 'Paraguay' 'Tunisia'
+ 'Democratic Republic of the Congo' 'Denmark' 'Uganda' 'Uruguay' 'Nepal'
+ 'Ghana' 'Zambia' 'Guatemala' 'Burkina Faso' 'Madagascar' 'Cambodia'
+ 'Somalia' 'Guinea' 'Bosnia and Herzegovina' 'Jordan' "Côte d'Ivoire"
+ 'Sri Lanka' 'Mozambique' 'Laos' 'Cuba' 'Central African Republic'
+ 'Trinidad and Tobago' 'Croatia' 'Congo' 'Afghanistan' 'Yemen' 'Zimbabwe'
+ 'Senegal' 'Panama' 'Papua New Guinea' 'Slovenia' 'Georgia' 'Nicaragua'
+ 'Gabon' 'Lithuania' 'Honduras' 'Botswana' 'Brunei' 'Estonia' 'Mauritania'
+ 'Lebanon' 'Kyrgyzstan' 'Malawi' 'Moldova' 'El Salvador' 'Armenia'
+ 'North Macedonia' 'Tajikistan' 'Costa Rica' 'Benin' 'Equatorial Guinea'
+ 'Malta' 'Jamaica' 'Luxembourg' 'Namibia' 'Latvia' 'Cyprus' 'Haiti'
+ 'East Timor' 'Eritrea' 'Guyana' 'Rwanda' 'Mauritius' 'Togo' 'Albania'
+ 'Suriname' 'Sierra Leone' 'Burundi' 'Montenegro' 'Bahamas' 'Lesotho'
+ 'Barbados' 'Grenada' 'Guinea-Bissau' 'Maldives' 'Iceland' 'Eswatini'
+ 'Bhutan' 'Fiji' 'Gambia' 'Belize' 'Djibouti' 'Antigua and Barbuda'
+ 'Seychelles' 'Liberia' 'Cabo Verde' 'Comoros' 'Saint Lucia' 'Andorra'
+ 'Solomon Islands' 'Vanuatu' 'Saint Vincent and the Grenadines'
+ 'Saint Kitts and Nevis' 'Samoa' 'Palau' 'Tonga' 'Dominica'
+ 'São Tomé and Principe' 'Liechtenstein' 'Micronesia' 'Marshall Islands'
+ 'Cook Islands' 'Kiribati' 'Nauru' 'Niue' 'Tuvalu']
+Sectors: ['Energy' 'Electricity/Heat' 'Transportation' 'Manufacturing/Construction'
+ 'Agriculture' 'Industrial Processes' 'Building' 'Fugitive Emissions'
+ 'Waste' 'Bunker Fuels' 'Other Fuel Combustion']
+Gases: ['All GHG' 'CO2' 'CH4' 'N2O' 'F-Gas']</code></pre>
+</div>
+</div>
+<p>Reshape Data</p>
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="f48e543c-89dc-4821-9a57-dbb41c0386f1">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt the dataframe to convert year columns into rows</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_long <span class="op">=</span> df.melt(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span>[<span class="st">'ISO'</span>, <span class="st">'Country'</span>, <span class="st">'Data source'</span>, <span class="st">'Sector'</span>, <span class="st">'Gas'</span>, <span class="st">'Unit'</span>],</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">'Year'</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">'Emissions'</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Year column to integer (currently stored as string)</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>df_long[<span class="st">'Year'</span>] <span class="op">=</span> df_long[<span class="st">'Year'</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by Country, Sector, and Year for readability</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>df_long <span class="op">=</span> df_long.sort_values(by<span class="op">=</span>[<span class="st">'Country'</span>, <span class="st">'Sector'</span>, <span class="st">'Year'</span>])</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop rows with missing emissions values</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>df_long <span class="op">=</span> df_long.dropna(subset<span class="op">=</span>[<span class="st">'Emissions'</span>])</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first 5 rows of the reshaped data</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Reshaped Data (Long Format):"</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_long.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Reshaped Data (Long Format):
+        ISO      Country    Data source       Sector      Gas    Unit  Year  \
+243296  AFG  Afghanistan  Climate Watch  Agriculture  All GHG  MtCO₂e  1990   
+243510  AFG  Afghanistan  Climate Watch  Agriculture      CH4  MtCO₂e  1990   
+244154  AFG  Afghanistan  Climate Watch  Agriculture      N2O  MtCO₂e  1990   
+235725  AFG  Afghanistan  Climate Watch  Agriculture  All GHG  MtCO₂e  1991   
+235939  AFG  Afghanistan  Climate Watch  Agriculture      CH4  MtCO₂e  1991   
+
+        Emissions  
+243296       8.07  
+243510       5.36  
+244154       2.70  
+235725       8.39  
+235939       5.60  </code></pre>
+</div>
+</div>
+</section>
+<section id="descriptive-analysis" class="level1">
+<h1><strong>Descriptive Analysis</strong></h1>
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:564}}" data-outputid="dae680e6-d402-45f9-d70f-c5349ad15f19" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of CO2 emissions globally (2022)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_2022_co2 <span class="op">=</span> df_long[(df_long[<span class="st">'Year'</span>] <span class="op">==</span> <span class="dv">2022</span>) <span class="op">&amp;</span> (df_long[<span class="st">'Gas'</span>] <span class="op">==</span> <span class="st">'CO2'</span>)]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df_2022_co2, x<span class="op">=</span><span class="st">'Emissions'</span>, bins<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Global CO2 Emissions Distribution (2022)'</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="script_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="global-co₂-emissions-distribution-2022" class="level3">
+<h3 class="anchored" data-anchor-id="global-co₂-emissions-distribution-2022">Global CO₂ Emissions Distribution (2022)</h3>
+<ul>
+<li><strong>Distribution Shape</strong>:<br>
+The histogram is <strong>strongly right-skewed</strong>, with most data clustered on the left.<br>
+</li>
+<li><strong>Key Observations</strong>:
+<ul>
+<li>Most countries/regions have <strong>low emissions</strong> (≤5,000 MtCO₂e).<br>
+</li>
+<li>A <strong>small subset of high emitters</strong> (e.g., China, USA, India) dominate the upper range (up to 35,000 MtCO₂e).<br>
+</li>
+</ul></li>
+<li><strong>Implication</strong>:<br>
+<em>“Global CO₂ emissions are highly concentrated, with a few economies disproportionately driving climate impacts.”</em></li>
+</ul>
+<hr>
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:569}}" data-outputid="803fc61f-5d72-45dc-8ca4-ba375027e1f9" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df_2022_co2, x<span class="op">=</span><span class="st">'Emissions'</span>, bins<span class="op">=</span><span class="dv">20</span>, log_scale<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Global CO2 Emissions (2022, Log Scale)'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="script_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="global-co₂-emissions-distribution-2022-log-scale" class="level3">
+<h3 class="anchored" data-anchor-id="global-co₂-emissions-distribution-2022-log-scale">Global CO₂ Emissions Distribution (2022, Log Scale)</h3>
+<ul>
+<li><p><strong>Visual Enhancement</strong>:<br>
+Using a <strong>logarithmic scale</strong> for emissions (x-axis) improves clarity by compressing the extreme right-skewed data into a more interpretable format.</p></li>
+<li><p><strong>Distribution Insights</strong>:</p>
+<ul>
+<li>Most countries cluster in the <strong>lower emission range</strong> (10⁻² to 10² MtCO₂e), reflecting modest carbon footprints.<br>
+</li>
+<li>A sharp drop-off occurs beyond 10² MtCO₂e, with only a <strong>handful of high-emitting countries</strong> (e.g., China, USA) reaching 10³–10⁴ MtCO₂e.<br>
+</li>
+<li>The long tail on the right confirms <strong>extreme disparities</strong> in emissions contribution.</li>
+</ul></li>
+<li><p><strong>Key Takeaway</strong>:<br>
+<em>“The log scale reveals that while most nations emit minimally, a small group of outliers drives the majority of global CO₂ emissions.”</em></p></li>
+</ul>
+<hr>
+<div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:564}}" data-outputid="3268fed3-1fb2-4198-906f-aeefb13b6017" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot to visualize outliers</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df_2022_co2, x<span class="op">=</span><span class="st">'Sector'</span>, y<span class="op">=</span><span class="st">'Emissions'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.yscale(<span class="st">'log'</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'CO2 Emissions by Sector (2022 - Log Scale)'</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="script_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="co₂-emissions-by-sector-2022---log-scale" class="level3">
+<h3 class="anchored" data-anchor-id="co₂-emissions-by-sector-2022---log-scale">CO₂ Emissions by Sector (2022 - Log Scale)</h3>
+<ul>
+<li><strong>Key Observations</strong>:
+<ul>
+<li>Emissions are plotted on a <strong>logarithmic scale</strong> (ranging from (10^{-2}) to (10^4) MtCO₂e) to accommodate extreme variations across sectors.<br>
+</li>
+<li><strong>Dominant Sectors</strong>:
+<ul>
+<li><strong>Energy</strong> and <strong>Electricity/Heat</strong> dominate emissions ((10<sup>3)–(10</sup>4) MtCO₂e), reflecting fossil fuel reliance.<br>
+</li>
+<li><strong>Transportation</strong> and <strong>Manufacturing/Construction</strong> fall in the mid-range ((10<sup>1)–(10</sup>2) MtCO₂e).<br>
+</li>
+<li>Low-emitting sectors like <strong>Building</strong> and <strong>Agriculture</strong> cluster near (10<sup>0)–(10</sup>{-1}) MtCO₂e.<br>
+</li>
+</ul></li>
+<li><strong>Outliers</strong>: Fugitive Emissions (e.g., methane leaks) show sporadic spikes.</li>
+</ul></li>
+<li><strong>Why This Matters</strong>:<br>
+<em>“The Energy sector remains the largest contributor to CO₂ emissions, underscoring the urgency of transitioning to renewable energy sources.”</em></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="inferential-analysis" class="level1">
+<h1><strong>Inferential Analysis</strong></h1>
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="b497aa95-7251-434a-d6bc-601b68c0ee72" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for 2022, CO2 emissions, and key sectors</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sectors_to_compare <span class="op">=</span> [<span class="st">'Energy'</span>, <span class="st">'Transportation'</span>, <span class="st">'Manufacturing/Construction'</span>]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>df_anova <span class="op">=</span> df_2022_co2[df_2022_co2[<span class="st">'Sector'</span>].isin(sectors_to_compare)]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Run ANOVA</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>f_stat, p_value <span class="op">=</span> stats.f_oneway(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    df_anova[df_anova[<span class="st">'Sector'</span>] <span class="op">==</span> <span class="st">'Energy'</span>][<span class="st">'Emissions'</span>],</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    df_anova[df_anova[<span class="st">'Sector'</span>] <span class="op">==</span> <span class="st">'Transportation'</span>][<span class="st">'Emissions'</span>],</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    df_anova[df_anova[<span class="st">'Sector'</span>] <span class="op">==</span> <span class="st">'Manufacturing/Construction'</span>][<span class="st">'Emissions'</span>]</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ANOVA Results:</span><span class="ch">\n</span><span class="ss">F-statistic = </span><span class="sc">{</span>f_stat<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">p-value = </span><span class="sc">{</span>p_value<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ANOVA Results:
+F-statistic = 2.01
+p-value = 0.1343</code></pre>
+</div>
+</div>
+<section id="anova-results-sectoral-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="anova-results-sectoral-comparison">ANOVA Results (Sectoral Comparison)</h3>
+<p><strong>F-statistic = 2.01 | p-value = 0.1343</strong></p>
+<ul>
+<li><strong>Interpretation</strong>:
+<ul>
+<li>No statistically significant difference in CO₂ emissions between the <strong>Energy</strong>, <strong>Transportation</strong>, and <strong>Manufacturing/Construction</strong> sectors in 2022.<br>
+</li>
+<li>The p-value &gt; 0.05 indicates that observed differences are likely due to random variation.<br>
+</li>
+</ul></li>
+<li><strong>Implication</strong>:<br>
+<em>“At a global aggregate level, these sectors contribute similarly to CO₂ emissions, suggesting no single sector dominates disproportionately in 2022.”</em></li>
+</ul>
+<hr>
+<p>Analyze Trends Over Time (Linear Regression)</p>
+<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="bb2c455f-2f2b-4fa5-da5a-32093d0f5163" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter global Energy sector CO2 emissions</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>global_energy <span class="op">=</span> df_long[</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    (df_long[<span class="st">'Country'</span>] <span class="op">==</span> <span class="st">'World'</span>) <span class="op">&amp;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    (df_long[<span class="st">'Sector'</span>] <span class="op">==</span> <span class="st">'Energy'</span>) <span class="op">&amp;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    (df_long[<span class="st">'Gas'</span>] <span class="op">==</span> <span class="st">'CO2'</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>slope, intercept, r_value, p_value, _ <span class="op">=</span> stats.linregress(</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    global_energy[<span class="st">'Year'</span>], global_energy[<span class="st">'Emissions'</span>]</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Slope = </span><span class="sc">{</span>slope<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">R² = </span><span class="sc">{</span>r_value<span class="op">**</span><span class="dv">2</span><span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">p-value = </span><span class="sc">{</span>p_value<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Slope = 501.20
+R² = 0.96
+p-value = 0.0000</code></pre>
+</div>
+</div>
+</section>
+<section id="linear-regression-results-energy-sector-trend" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression-results-energy-sector-trend">Linear Regression Results (Energy Sector Trend)</h3>
+<p><strong>Slope = 501.20 | R² = 0.96 | p-value = 0.0000</strong></p>
+<ul>
+<li><strong>Interpretation</strong>:
+<ul>
+<li><strong>Slope</strong>: Emissions increased by <strong>501.20 MtCO₂e/year</strong> from 1990–2022.<br>
+</li>
+<li><strong>R²</strong>: 96% of the variance in emissions is explained by the year (near-perfect linear trend).<br>
+</li>
+<li><strong>p-value</strong>: The trend is statistically significant (p &lt; 0.001).<br>
+</li>
+</ul></li>
+<li><strong>Implication</strong>:<br>
+<em>“Global Energy sector emissions are rising relentlessly, demanding urgent policy action to curb fossil fuel dependency.”</em></li>
+</ul>
+<hr>
+<p><strong>Trend Visualization</strong></p>
+<div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:564}}" data-outputid="6831a22e-d89e-40f7-862d-741a80acd5da" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>global_energy, x<span class="op">=</span><span class="st">'Year'</span>, y<span class="op">=</span><span class="st">'Emissions'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Global CO2 Emissions Trend (Energy Sector, 1990–2020)'</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.xticks(global_energy[<span class="st">'Year'</span>][::<span class="dv">5</span>])  <span class="co"># Show every 5th year</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="script_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="global-co₂-emissions-trend-energy-sector-19902020" class="level3">
+<h3 class="anchored" data-anchor-id="global-co₂-emissions-trend-energy-sector-19902020">Global CO₂ Emissions Trend (Energy Sector, 1990–2020)</h3>
+<ul>
+<li><strong>Trend Analysis</strong>:
+<ul>
+<li>Emissions rose <strong>steadily</strong> from ~22,000 MtCO₂e (1990) to ~34,000 MtCO₂e (2020).<br>
+</li>
+<li>The near-linear upward trajectory aligns with the regression result (<strong>Slope = 501.20 MtCO₂e/year</strong>).<br>
+</li>
+<li>No significant dips or plateaus, indicating <strong>unabated growth</strong> in energy-related emissions.</li>
+</ul></li>
+<li><strong>Key Insight</strong>:<br>
+<em>“Despite global climate agreements, CO₂ emissions from the Energy sector have increased consistently for three decades, highlighting systemic challenges in decarbonization.”</em></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="answers-to-questions" class="level1">
+<h1><strong>Answers to Questions</strong></h1>
+<section id="question-1" class="level4">
+<h4 class="anchored" data-anchor-id="question-1">Question 1:</h4>
+<p><strong>Do CO₂ emissions differ significantly across the Energy, Transportation, and Manufacturing/Construction sectors globally in 2022?</strong><br>
+- <strong>Answer</strong>: No.<br>
+- <strong>ANOVA Result</strong>: No significant difference (p = 0.1343).<br>
+- <strong>Conclusion</strong>: Emissions across these sectors are statistically similar at the global level in 2022.</p>
+</section>
+<section id="question-2" class="level4">
+<h4 class="anchored" data-anchor-id="question-2">Question 2:</h4>
+<p><strong>How have global CO₂ emissions in the Energy sector changed over time (1990–2022)?</strong><br>
+- <strong>Answer</strong>: Sharply increased.<br>
+- <strong>Regression Result</strong>: +501.20 MtCO₂e/year (R² = 0.96, p &lt; 0.001).<br>
+- <strong>Conclusion</strong>: A near-perfect upward linear trend indicates unchecked growth in energy-related emissions.</p>
+<hr>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
